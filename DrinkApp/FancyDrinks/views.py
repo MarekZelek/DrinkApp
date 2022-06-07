@@ -110,10 +110,7 @@ class EditView(PermissionRequiredMixin, View):
         old_image = Drink.objects.filter()
         if form.is_valid():
             drink.name = form.cleaned_data["name"]
-            # drink.drink_foto = request.FILES["drink_foto"],
-            new_image = request.FILES["drink_foto"]
-            old_image.drink_foto = new_image
-            old_image.save()
+            drink.drink_foto = request.FILES["drink_foto"],
             # drink.ingredients = form.cleaned_data["ingredients"]
             drink.description = form.cleaned_data["description"]
             drink.owner = form.cleaned_data["owner"]
