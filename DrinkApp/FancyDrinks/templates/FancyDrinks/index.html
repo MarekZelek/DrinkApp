@@ -1,0 +1,35 @@
+{% extends 'FancyDrinks/base.html' %}
+{% block title%}Home{% endblock %}
+{% block content %}
+{% load bootstrap %}
+
+{% if user.is_authenticated %}
+<h3>Add new drink</h3>
+<a href="{% url 'FancyDrinks:add_drink' %}">Add your own fancy drink</a>
+<!--<form action="{% url 'FancyDrinks:index' %}" method="post">-->
+<!--{% csrf_token %}-->
+
+<!--{{ form|bootstrap }}-->
+
+<!--<input type="submit" value="Send">-->
+<!--</form>-->
+
+{% endif %}
+{% if drink_list %}
+<!--<ul>-->
+<div class="row row-no-gutters">
+    {% for drink in drink_list %}
+    <div class="col-md-4"><a href="{% url 'FancyDrinks:detail' drink.id %}"><img class="w-100 shadow-1-strong rounded mb-4" style="width:150px;height:150px;background:red;"
+                                                               src="{{ drink.drink_foto.url }}"/>{{ drink.name }}</a>
+    </div>
+
+<!--    <li><a href="{% url 'FancyDrinks:detail' drink.id %}"><img style="width:150px;height:150px;background:red;"-->
+<!--                                                               src="{{ drink.drink_foto.url }}"/>{{ drink.name }}</a>-->
+<!--    </li>-->
+    {% endfor %}
+</div>
+<!--</ul>-->
+{% else %}
+<p>No drinks are available.</p>
+{% endif %}
+{% endblock %}

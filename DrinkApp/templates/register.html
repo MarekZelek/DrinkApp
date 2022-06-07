@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Fancy Drinks - login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+</head>
+<body>
+
+{% if messages %}
+{% for message in messages %}
+<h2>{{ message.tags }}: {{ message }}</h2>
+{% endfor %}
+{% endif %}
+
+<h3>Register</h3>
+
+<form action="{% url 'registration' %}" method="post">
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<input type="submit" value="Create account">
+</form>
+<a href="{% url 'FancyDrinks:index' %}">Back to HOME</a>
+
+
+
+</body>
+</html>

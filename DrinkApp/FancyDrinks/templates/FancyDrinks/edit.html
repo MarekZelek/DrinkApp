@@ -1,0 +1,19 @@
+{% extends 'FancyDrinks/base.html' %}
+{% block title%}Edit{% endblock %}
+{% block content %}
+{% load bootstrap %}
+
+<h1>You are editing: {{ drink }}</h1>
+
+<form action="{% url 'FancyDrinks:edit' drink.id %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+{{ form|bootstrap }}
+
+<input type="submit" value="Save">
+</form>
+<a href="{% url 'FancyDrinks:detail' drink.id %}">Back to details</a>
+
+{% endblock %}
+
+

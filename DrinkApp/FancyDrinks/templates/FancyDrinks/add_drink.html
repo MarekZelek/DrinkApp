@@ -1,0 +1,18 @@
+{% extends 'FancyDrinks/base.html' %}
+{% block title%}Add drink{% endblock %}
+{% block content %}
+{% load bootstrap %}
+
+{% if user.is_authenticated %}
+<h3>Add new drink</h3>
+
+<form action="{% url 'FancyDrinks:add_drink' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+{{ form|bootstrap }}
+
+<input type="submit" value="Add">
+</form>
+
+{% endif %}
+{% endblock %}

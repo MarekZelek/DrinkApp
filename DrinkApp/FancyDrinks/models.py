@@ -14,7 +14,6 @@ class Ingredient(models.Model):
     name = models.CharField(max_length=150)
     type = models.IntegerField(choices=INGREDIENT_TYPE)
     ingredient_foto = models.ImageField(blank=True, null=True)
-    rates = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -23,7 +22,7 @@ class Ingredient(models.Model):
 class Drink(models.Model):
     name = models.CharField(max_length=100)
     ingredients = models.ManyToManyField(Ingredient)
-    drink_foto = models.ImageField(blank=True, null=True)
+    drink_foto = models.ImageField(blank=True, null=True, upload_to="FancyDrinks/static/media/")
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     rates = models.IntegerField(default=0)
     description = models.TextField(null=True)

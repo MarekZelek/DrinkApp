@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Fancy Drinks - {% block title%}{% endblock %}</title>
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+</head>
+<body>
+
+<a href="{% url 'FancyDrinks:index' %}">Back to HOME</a><br>
+
+{% if user.is_authenticated %}
+Username: {{ user }}<br>
+<a href="{% url 'logout' %}" >Logout</a><br>
+{% else %}
+Please, login <a href="{% url 'login' %}">Login</a> or create account.<a href="{% url 'registration' %}">Create account</a><br>
+{% endif %}
+
+<div class="container">
+{% if messages %}
+{% for message in messages %}
+<h4>{{ message.tags }}: {{ message }}</h4>
+{% endfor %}
+{% endif %}
+
+{% block content %}
+{% endblock %}
+
+</div>
+</body>
+</html>

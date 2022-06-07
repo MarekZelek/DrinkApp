@@ -1,0 +1,35 @@
+{% extends 'FancyDrinks/base.html' %}
+{% block title%}Details{% endblock %}
+{% block content %}
+{% load bootstrap %}
+
+<form action="{% url 'FancyDrinks:detail' drink.id %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>{{ drink.name }} <a href="{% url 'FancyDrinks:edit' drink.id %}">Edit</a></h1></legend>
+
+    {% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
+</fieldset>
+</form>
+
+<div class="drink-foto" style="width: 160px; height: 160px"><img style="width:150px;height:150px;background:red;" src="{{ drink.drink_foto.url }}" /></div>
+Drink name:
+<div class="drink-name">{{ drink.name }}</div>
+Ingredient list:
+<ul>
+{% for ingredients in drink.ingredients.all %}
+    <li>{{ ingredients }}</li>
+{% endfor %}
+</ul>
+Description:
+<div class="drink-description">{{ drink.description }}</div>
+Rates:
+<div class="drink-rates">{{ drink.rates }}</div>
+Added by:
+<div class="drink-owner">{{ drink.owner }}</div>
+
+
+{% endblock %}
